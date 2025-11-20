@@ -13,8 +13,8 @@ CORS(app) # Permite peticiones cruzadas si fuera necesario
 
 @app.route('/')
 def home():
-    # Renderiza el HTML que me mostraste (que debe estar en templates/index.html)
-    return render_template('index.html')
+    # Pasamos las carreras para mostrarlas en la sección "Oferta Académica"
+    return render_template('index.html', carreras=db.carreras)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

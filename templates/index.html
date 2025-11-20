@@ -2,112 +2,264 @@
 
 {% block content %}
 
-<div class="hero-banner position-relative text-white text-center py-5" 
-     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-    <div class="container py-5">
-        <h1 class="display-3 fw-bold mb-3">Instituto Profesional Crecer Más</h1>
-        <p class="fs-4 mb-4 opacity-75">Formación técnica de calidad, flexible y enfocada en tu empleabilidad.</p>
-        <a href="#admision" class="btn btn-warning btn-lg fw-bold px-5 rounded-pill shadow hover-scale">
-            Matrículas Abiertas 2026
-        </a>
-    </div>
-</div>
-
-<div class="position-relative text-white text-center py-5" 
-     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
-    <div class="container py-5">
-        <h1 class="display-3 fw-bold mb-3">Instituto Profesional Crecer Más</h1>
-        <p class="fs-4 mb-4 opacity-75">Formación técnica de calidad, flexible y enfocada en tu empleabilidad.</p>
-        <a href="#admision" class="btn btn-warning btn-lg fw-bold px-5 rounded-pill shadow hover-scale">
-            Matrículas Abiertas 2026
-        </a>
-    </div>
-</div>
-
-<div class="container my-5" id="mision">
-    <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0">
-            <h2 class="fw-bold mb-3" style="color: var(--primary);">Nuestra Misión</h2>
-            <p class="lead text-muted">
-                Entregar educación técnica profesional de calidad, con fuerte énfasis en la empleabilidad de los egresados y en la vinculación con el medio productivo.
-            </p>
-            <p class="text-secondary">
-                Nos centramos en la calidad académica, la formación práctica y la adaptación a las necesidades del mercado laboral actual.
-            </p>
-        </div>
-        <div class="col-md-6">
-            <div class="card border-0 shadow-sm p-4 hover-card">
-                <h4 class="fw-bold mb-3">
-                    <i class="material-icons align-middle text-success me-2">check_circle</i> 
-                    ¿Por qué elegirnos?
-                </h4>
-                <ul class="list-unstyled mt-3">
-                    <li class="mb-3 d-flex align-items-center">
-                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill me-2 p-1"><i class="material-icons fs-6">place</i></span> 
-                        Sedes en San Bernardo, Maipú y Renca.
-                    </li>
-                    <li class="mb-3 d-flex align-items-center">
-                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill me-2 p-1"><i class="material-icons fs-6">groups</i></span>
-                        Más de 2.500 estudiantes confían en nosotros.
-                    </li>
-                    <li class="mb-2 d-flex align-items-center">
-                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill me-2 p-1"><i class="material-icons fs-6">school</i></span>
-                        Modelo educativo accesible y flexible.
-                    </li>
-                </ul>
-            </div>
+<div class="hero-banner position-relative text-white text-center d-flex align-items-center" 
+     style="min-height: 85vh; background: linear-gradient(rgba(13, 71, 161, 0.7), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
+    
+    <div class="container position-relative z-2">
+        <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold shadow-sm tracking-wider">
+            ADMISIÓN 2026 ABIERTA
+        </span>
+        <h1 class="display-2 fw-800 mb-3 ls-1">Tu Futuro Comienza Hoy</h1>
+        <p class="fs-4 mb-5 opacity-90 mx-auto" style="max-width: 700px;">
+            Fórmate en el <strong>Instituto Profesional Crecer Más</strong>. Tecnología, empleabilidad y calidad docente al servicio de tu carrera.
+        </p>
+        
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="#carreras" class="btn btn-light btn-lg fw-bold px-5 rounded-pill shadow hover-scale text-primary">
+                Ver Carreras
+            </a>
+            <a href="#contacto" class="btn btn-outline-light btn-lg fw-bold px-5 rounded-pill shadow hover-scale backdrop-blur">
+                Contáctanos
+            </a>
         </div>
     </div>
+    
+    <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden line-height-0">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="width: 100%; height: 60px; fill: var(--bg-body);">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+        </svg>
+    </div>
 </div>
 
-<div class="py-5" id="admision" style="background-color: var(--bg-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+<div class="py-5 text-white" style="background-color: var(--primary);">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Proceso de Admisión</h2>
-            <p class="text-muted">Únete a nuestra comunidad educativa en 3 simples pasos.</p>
-        </div>
-        
-        <div class="row g-4 text-center">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm p-4 hover-scale" style="background-color: var(--bg-body);">
-                    <div class="mb-3">
-                        <div class="d-inline-flex p-3 rounded-circle" style="background-color: rgba(var(--primary-rgb), 0.1);">
-                            <span class="material-icons fs-1" style="color: var(--primary);">app_registration</span>
-                        </div>
-                    </div>
-                    <h5 class="fw-bold">1. Postula Online</h5>
-                    <p class="text-muted small">Completa el formulario único en nuestro nuevo CRM Educativo integrado.</p>
-                </div>
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold display-5 mb-0">+15</h2>
+                <p class="mb-0 opacity-75">Años de Trayectoria</p>
             </div>
-            
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm p-4 hover-scale" style="background-color: var(--bg-body);">
-                    <div class="mb-3">
-                        <div class="d-inline-flex p-3 rounded-circle" style="background-color: rgba(var(--primary-rgb), 0.1);">
-                            <span class="material-icons fs-1" style="color: var(--primary);">upload_file</span>
-                        </div>
-                    </div>
-                    <h5 class="fw-bold">2. Sube Documentos</h5>
-                    <p class="text-muted small">Digitaliza tu licencia de enseñanza media y cédula de identidad.</p>
-                </div>
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold display-5 mb-0">2.5k</h2>
+                <p class="mb-0 opacity-75">Alumnos Activos</p>
             </div>
-            
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm p-4 hover-scale" style="background-color: var(--bg-body);">
-                    <div class="mb-3">
-                        <div class="d-inline-flex p-3 rounded-circle" style="background-color: rgba(var(--primary-rgb), 0.1);">
-                            <span class="material-icons fs-1" style="color: var(--primary);">school</span>
-                        </div>
-                    </div>
-                    <h5 class="fw-bold">3. ¡Bienvenido!</h5>
-                    <p class="text-muted small">Recibe tu confirmación de matrícula y acceso inmediato al Campus Virtual.</p>
-                </div>
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold display-5 mb-0">92%</h2>
+                <p class="mb-0 opacity-75">Empleabilidad</p>
             </div>
-        </div>
-        
-        <div class="text-center mt-5">
-             <a href="/login" class="btn btn-outline-primary rounded-pill px-4 fw-bold">Ir al Portal de Estudiante</a>
+            <div class="col-md-3 col-6">
+                <h2 class="fw-bold display-5 mb-0">3</h2>
+                <p class="mb-0 opacity-75">Sedes Modernas</p>
+            </div>
         </div>
     </div>
 </div>
+
+<section id="institucion" class="py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="position-relative ps-4">
+                    <div class="position-absolute top-0 start-0 h-100 bg-secondary rounded" style="width: 5px;"></div>
+                    <h5 class="text-secondary fw-bold text-uppercase ls-2 mb-2">Quiénes Somos</h5>
+                    <h2 class="display-5 fw-bold mb-4">Excelencia Académica y Visión de Futuro</h2>
+                    <p class="lead text-muted mb-4">
+                        En <strong>Crecer Más</strong>, no solo formamos técnicos y profesionales; formamos personas capaces de adaptarse a un mundo digital en constante cambio.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="material-icons text-success me-3 mt-1">check_circle</i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Modelo Educativo Flexible</h6>
+                                <small class="text-muted">Estudia en modalidad Diurna, Vespertina u Online.</small>
+                            </div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="material-icons text-success me-3 mt-1">check_circle</i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Infraestructura Tecnológica</h6>
+                                <small class="text-muted">Laboratorios de última generación y Campus Virtual+.</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow-sm hover-scale w-100 mb-3" alt="Alumnos">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow-sm hover-scale w-100" alt="Reunión">
+                    </div>
+                    <div class="col-6 mt-5">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-4 shadow-sm hover-scale w-100" alt="Clase">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="carreras" class="py-5" style="background-color: var(--bg-card); border-top: 1px solid var(--border-color);">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h5 class="text-secondary fw-bold text-uppercase ls-2">Nuestra Oferta</h5>
+            <h2 class="fw-bold display-6">Carreras Técnicas y Profesionales</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Programas diseñados junto a la industria para asegurar tu inserción laboral.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for c in carreras %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="background-color: var(--bg-body);">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="p-3 rounded-circle bg-white shadow-sm text-primary">
+                                <i class="material-icons fs-3">school</i>
+                            </div>
+                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary rounded-pill">
+                                {{ c.jornada }}
+                            </span>
+                        </div>
+                        <h4 class="fw-bold mb-2">{{ c.nombre }}</h4>
+                        <p class="text-muted small mb-4">Formación especializada con certificación intermedia.</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-top pt-3" style="border-color: var(--border-color) !important;">
+                            <small class="fw-bold text-muted">
+                                <i class="material-icons align-middle fs-6 me-1">schedule</i> {{ c.duracion }}
+                            </small>
+                            <a href="#" class="text-decoration-none fw-bold small">Ver Malla <i class="material-icons align-middle fs-6">arrow_forward</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="admision" class="py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5 order-lg-2">
+                <div class="card border-0 shadow-lg text-white text-center p-5 rounded-4" style="background: linear-gradient(135deg, var(--primary), var(--accent));">
+                    <h3 class="fw-bold mb-3 text-white">¡Matricúlate Hoy!</h3>
+                    <p class="mb-4 text-white-50">Cupos limitados para el proceso de admisión 2026. No te quedes fuera.</p>
+                    <a href="#contacto" class="btn btn-light text-primary fw-bold btn-lg w-100 rounded-pill shadow-sm">Solicitar Información</a>
+                    <small class="d-block mt-3 text-white-50">* Sin costo de matrícula hasta el 30 de Diciembre.</small>
+                </div>
+            </div>
+            <div class="col-lg-7 order-lg-1">
+                <h5 class="text-secondary fw-bold text-uppercase ls-2 mb-3">Proceso de Admisión</h5>
+                <h2 class="fw-bold mb-5">Cómo ser parte de Crecer Más</h2>
+                
+                <div class="d-flex mb-4">
+                    <div class="me-4">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold fs-4 shadow-sm" style="width: 60px; height: 60px;">1</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Postulación Online</h5>
+                        <p class="text-muted">Completa el formulario de contacto. Nuestro CRM gestionará tu solicitud automáticamente.</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex mb-4">
+                    <div class="me-4">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-white border border-2 border-primary text-primary fw-bold fs-4 shadow-sm" style="width: 60px; height: 60px;">2</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Entrega de Documentos</h5>
+                        <p class="text-muted">Licencia de enseñanza media y fotocopia de cédula de identidad (Digital).</p>
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="me-4">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-white border border-2 border-primary text-primary fw-bold fs-4 shadow-sm" style="width: 60px; height: 60px;">3</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Acceso al Campus</h5>
+                        <p class="text-muted">Una vez matriculado, recibirás tus credenciales para el Campus Virtual+.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contacto" class="py-5 text-white" style="background-color: #1a1a1a;">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-white mb-4">Contáctanos</h2>
+                <p class="text-white-50 mb-5">¿Tienes dudas sobre nuestras carreras o el proceso de admisión? Déjanos tus datos y un ejecutivo te contactará.</p>
+                
+                <div class="d-flex align-items-start mb-4">
+                    <i class="material-icons text-secondary fs-4 me-3">location_on</i>
+                    <div>
+                        <h6 class="fw-bold text-white mb-1">Sede Central</h6>
+                        <p class="text-white-50 mb-0">Av. Libertador Bernardo O'Higgins 1234, Santiago.</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-start mb-4">
+                    <i class="material-icons text-secondary fs-4 me-3">email</i>
+                    <div>
+                        <h6 class="fw-bold text-white mb-1">Correo Electrónico</h6>
+                        <p class="text-white-50 mb-0">admision@crecermas.cl</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start">
+                    <i class="material-icons text-secondary fs-4 me-3">phone</i>
+                    <div>
+                        <h6 class="fw-bold text-white mb-1">Teléfono</h6>
+                        <p class="text-white-50 mb-0">+56 2 2233 4455</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card border-0 shadow p-4" style="background-color: var(--bg-card);">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-4">Formulario de Contacto</h4>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Tu nombre">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">Apellido</label>
+                                    <input type="text" class="form-control" placeholder="Tu apellido">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Correo Electrónico</label>
+                                    <input type="email" class="form-control" placeholder="nombre@ejemplo.com">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Carrera de Interés</label>
+                                    <select class="form-select">
+                                        <option selected>Selecciona una opción...</option>
+                                        {% for c in carreras %}
+                                            <option>{{ c.nombre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Mensaje</label>
+                                    <textarea class="form-control" rows="3" placeholder="¿En qué podemos ayudarte?"></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="button" class="btn btn-custom w-100" onclick="Swal.fire('Mensaje Enviado', 'Pronto te contactaremos', 'success')">
+                                        ENVIAR CONSULTA
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

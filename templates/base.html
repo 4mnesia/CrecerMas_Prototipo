@@ -12,11 +12,12 @@
 
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top"
-        style="background-color: var(--navbar-bg); transition: background-color 0.3s ease;">
+        style="background-color: var(--navbar-bg); transition: background-color 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1);">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center fw-bold" href="/">
-                <span class="material-icons me-2">school</span>
-                CRECER MÁS
+            <a class="navbar-brand d-flex align-items-center fw-bold ls-1" href="/">
+                <span class="material-icons me-2 fs-4">school</span>
+                <span class="d-none d-md-block">IP CRECER MÁS</span>
+                <span class="d-md-none">IPCM</span>
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -24,39 +25,55 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link px-3" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#institucion">Institución</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#carreras">Carreras</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#admision">Admisión</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#contacto">Contacto</a></li>
+                </ul>
 
-                    {% if session.get('user') %}
-                    {% if session.get('user') == 'admin' %}
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('admin_dashboard') }}">Gestión</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url_for('student_dashboard') }}">Campus</a>
-                    </li>
-                    {% endif %}
+                <ul class="navbar-nav ms-auto align-items-center gap-2">
 
-                    <li class="nav-item ms-2">
-                        <span class="d-flex align-items-center px-3 py-1 rounded-pill user-badge"
-                            style="font-size: 0.9rem;">
-                            <i class="material-icons fs-6 me-2 opacity-75">person</i>
-                            {{ session['nombre'] }}
-                        </span>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-outline-light btn-sm px-3 rounded-pill" href="/logout">Salir</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-link" href="/login">Acceso</a></li>
-                    {% endif %}
-
-                    <li class="nav-item ms-3 border-start ps-3 border-white border-opacity-25">
-                        <button id="theme-toggle"
-                            class="btn btn-warning btn-sm d-flex align-items-center justify-content-center rounded-circle shadow-sm hover-scale"
-                            style="width: 35px; height: 35px;" title="Cambiar Tema">
-                            <span class="material-icons fs-6" id="theme-icon">dark_mode</span>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="btn btn-link text-white p-0" title="Cambiar Tema">
+                            <span class="material-icons" id="theme-icon">dark_mode</span>
                         </button>
                     </li>
+
+                    <div class="vr text-white mx-2 d-none d-lg-block"></div>
+
+                    {% if session.get('user') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center user-badge rounded-pill px-3 py-1"
+                            href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="material-icons fs-6 me-2">person</i>
+                            <span class="small fw-bold">{{ session['nombre'] }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
+                            {% if session.get('user') == 'admin' %}
+                            <li><a class="dropdown-item py-2" href="{{ url_for('admin_dashboard') }}"><i
+                                        class="material-icons align-middle fs-6 me-2 text-primary">dashboard</i>
+                                    Gestión</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item py-2" href="{{ url_for('student_dashboard') }}"><i
+                                        class="material-icons align-middle fs-6 me-2 text-primary">laptop_mac</i> Mi
+                                    Campus</a></li>
+                            {% endif %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item py-2 text-danger" href="/logout">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm rounded-pill px-3 fw-bold d-flex align-items-center"
+                            href="/login">
+                            <i class="material-icons fs-6 me-1">lock</i> Intranet
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
