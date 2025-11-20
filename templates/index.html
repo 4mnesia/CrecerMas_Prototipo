@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero-banner position-relative text-white text-center py-5" 
+     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+    <div class="container py-5">
+        <h1 class="display-3 fw-bold mb-3">Instituto Profesional Crecer Más</h1>
+        <p class="fs-4 mb-4 opacity-75">Formación técnica de calidad, flexible y enfocada en tu empleabilidad.</p>
+        <a href="#admision" class="btn btn-warning btn-lg fw-bold px-5 rounded-pill shadow hover-scale">
+            Matrículas Abiertas 2026
+        </a>
+    </div>
+</div>
+
+<div class="position-relative text-white text-center py-5" 
+     style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;">
+    <div class="container py-5">
+        <h1 class="display-3 fw-bold mb-3">Instituto Profesional Crecer Más</h1>
+        <p class="fs-4 mb-4 opacity-75">Formación técnica de calidad, flexible y enfocada en tu empleabilidad.</p>
+        <a href="#admision" class="btn btn-warning btn-lg fw-bold px-5 rounded-pill shadow hover-scale">
+            Matrículas Abiertas 2026
+        </a>
+    </div>
+</div>
+
+<div class="container my-5" id="mision">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <h2 class="fw-bold mb-3" style="color: var(--primary);">Nuestra Misión</h2>
+            <p class="lead text-muted">
+                Entregar educación técnica profesional de calidad, con fuerte énfasis en la empleabilidad de los egresados y en la vinculación con el medio productivo.
+            </p>
+            <p class="text-secondary">
+                Nos centramos en la calidad académica, la formación práctica y la adaptación a las necesidades del mercado laboral actual.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-4 hover-card">
+                <h4 class="fw-bold mb-3">
+                    <i class="material-icons align-middle text-success me-2">check_circle</i> 
+                    ¿Por qué elegirnos?
+                </h4>
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-3 d-flex align-items-center">
+                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill me-2 p-1"><i class="material-icons fs-6">place</i></span> 
+                        Sedes en San Bernardo, Maipú y Renca.
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill me-2 p-1"><i class="material-icons fs-6">groups</i></span>
+                        Más de 2.500 estudiantes confían en nosotros.
+                    </li>
+                    <li class="mb-2 d-flex align-items-center">
+                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill me-2 p-1"><i class="material-icons fs-6">school</i></span>
+                        Modelo educativo accesible y flexible.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="py-5" id="admision" style="background-color: var(--bg-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Proceso de Admisión</h2>
+            <p class="text-muted">Únete a nuestra comunidad educativa en 3 simples pasos.</p>
+        </div>
+        
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4 hover-scale" style="background-color: var(--bg-body);">
+                    <div class="mb-3">
+                        <div class="d-inline-flex p-3 rounded-circle" style="background-color: rgba(var(--primary-rgb), 0.1);">
+                            <span class="material-icons fs-1" style="color: var(--primary);">app_registration</span>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold">1. Postula Online</h5>
+                    <p class="text-muted small">Completa el formulario único en nuestro nuevo CRM Educativo integrado.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4 hover-scale" style="background-color: var(--bg-body);">
+                    <div class="mb-3">
+                        <div class="d-inline-flex p-3 rounded-circle" style="background-color: rgba(var(--primary-rgb), 0.1);">
+                            <span class="material-icons fs-1" style="color: var(--primary);">upload_file</span>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold">2. Sube Documentos</h5>
+                    <p class="text-muted small">Digitaliza tu licencia de enseñanza media y cédula de identidad.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4 hover-scale" style="background-color: var(--bg-body);">
+                    <div class="mb-3">
+                        <div class="d-inline-flex p-3 rounded-circle" style="background-color: rgba(var(--primary-rgb), 0.1);">
+                            <span class="material-icons fs-1" style="color: var(--primary);">school</span>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold">3. ¡Bienvenido!</h5>
+                    <p class="text-muted small">Recibe tu confirmación de matrícula y acceso inmediato al Campus Virtual.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+             <a href="/login" class="btn btn-outline-primary rounded-pill px-4 fw-bold">Ir al Portal de Estudiante</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

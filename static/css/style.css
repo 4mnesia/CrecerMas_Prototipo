@@ -1,0 +1,175 @@
+/* static/css/style.css */
+
+:root {
+    /* --- MODO CLARO (High Contrast & Clean) --- */
+    --primary: #0D47A1;           /* Azul más profundo y profesional */
+    --secondary: #FB8C00;         /* Naranja con más peso */
+    --accent: #1565C0;            
+    
+    /* Fondo gris azulado suave (hace que el blanco brille) */
+    --bg-body: #EFF3F8;           
+    
+    /* Blanco puro para tarjetas */
+    --bg-card: #FFFFFF;           
+    
+    /* Gris muy suave para inputs (para que no se pierdan) */
+    --bg-input: #F8F9FA;
+    
+    --text-main: #1A1D21;         /* Casi negro, muy legible */
+    --text-muted: #64748B;        /* Gris azulado */
+    --text-inverse: #FFFFFF;      
+    
+    --border-color: #D1D5DB;      /* Borde gris visible */
+    
+    /* Sombra de "Elevación" (Material Design suave) */
+    --shadow: 0 4px 6px -1px rgba(50, 50, 93, 0.11), 0 1px 3px -1px rgba(0, 0, 0, 0.08);
+    
+    --navbar-bg: #0D47A1;
+    --navbar-text: #FFFFFF;
+    --badge-bg: rgba(255, 255, 255, 0.2); /* Vidrio semitransparente */
+}
+
+[data-theme="dark"] {
+    /* --- MODO OSCURO (OLED & Cyberpunk) --- */
+    --primary: #AB47BC;           /* Morado Neón */
+    --secondary: #FFCA28;         /* Amarillo Ámbar */
+    --accent: #7B1FA2;            
+    
+    --bg-body: #000000;           /* Negro Puro */
+    --bg-card: #121212;           /* Gris Carbón */
+    --bg-input: #1E1E1E;          /* Inputs oscuros */
+    
+    --text-main: #E2E8F0;         /* Blanco humo */
+    --text-muted: #94A3B8;        
+    --text-inverse: #000000;      
+    
+    --border-color: #2D2D2D;      /* Bordes muy sutiles */
+    
+    /* Resplandor suave morado */
+    --shadow: 0 10px 15px -3px rgba(171, 71, 188, 0.15);
+    
+    --navbar-bg: #050505;
+    --navbar-text: #E2E8F0;
+    --badge-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* --- RESET GLOBAL --- */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased; /* Texto más nítido */
+}
+
+h1, h2, h3, h4, h5, h6, p, span, li, td, th {
+    color: var(--text-main);
+}
+
+/* --- REGLAS DE BOOTSTRAP OVERRIDE --- */
+.text-dark { color: var(--text-main) !important; }
+.text-white { color: var(--text-inverse) !important; } 
+/* ¡OJO! En el navbar el texto debe seguir siendo blanco en ambos modos si el fondo es oscuro */
+.navbar .text-white, .hero-section .text-white { color: #FFFFFF !important; }
+
+.bg-white { background-color: var(--bg-card) !important; }
+.bg-light { background-color: var(--bg-card) !important; } 
+/* Truco: Hacemos que bg-light sea igual a bg-card para evitar parches grises feos en modo oscuro */
+
+/* --- COMPONENTES --- */
+
+/* Tarjetas: La clave para que el modo claro no se vea plano */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    border-radius: 12px; /* Bordes más modernos */
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.navbar-brand, .nav-link {
+    color: var(--navbar-text) !important;
+}
+.nav-link:hover {
+    color: var(--secondary) !important;
+    transform: translateY(-1px);
+}
+
+/* Inputs y Formularios */
+.form-control, .form-select {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 12px; /* Más espacio para escribir */
+    border-radius: 8px;
+}
+.form-control:focus {
+    background-color: var(--bg-card); /* Al enfocar se pone blanco/negro puro */
+    color: var(--text-main);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(var(--primary), 0.1); /* Anillo de enfoque suave */
+}
+
+/* Botones */
+.btn-custom {
+    background-color: var(--primary);
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 50px; /* Botones redondos modernos */
+    transition: all 0.3s;
+}
+.btn-custom:hover {
+    background-color: var(--secondary); /* Cambio de color al hover */
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Tablas */
+.table {
+    color: var(--text-main) !important;
+    border-color: var(--border-color);
+}
+.table thead th {
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,0.02); /* Hover muy sutil */
+}
+[data-theme="dark"] .table-hover tbody tr:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* Badge de Usuario (Navbar) */
+.user-badge {
+    background-color: var(--badge-bg);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #FFFFFF;
+}
+
+/* Utilidades Especiales */
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Curso Card Específico */
+.course-card .progress {
+    background-color: var(--bg-input); /* Fondo de la barra de progreso */
+}
+
+.hero-banner h1, 
+.hero-banner p,
+.hero-banner .text-white {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5)

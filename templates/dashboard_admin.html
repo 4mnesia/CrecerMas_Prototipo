@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Panel de Gestión Institucional</h2>
+        <span class="badge rounded-pill px-3 py-2 shadow-sm" style="background-color: var(--primary);">
+            <i class="material-icons align-middle fs-6 me-1">admin_panel_settings</i>
+            Admin: {{ session['nombre'] }}
+        </span>
+    </div>
+
+    <div class="row mb-5">
+        <h4 class="mb-3 opacity-75">Estado del Programa de Transformación Digital</h4>
+        
+        {% for p in proyectos %}
+        <div class="col-md-3 mb-3">
+            <div class="card border-0 shadow-sm h-100 hover-card border-top border-4 border-{{ p.color }}">
+                <div class="card-body">
+                    <h6 class="fw-bold text-{{ p.color }}">{{ p.nombre }}</h6>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <span class="badge border text-muted fw-normal">{{ p.estado }}</span>
+                        <small class="fw-bold">{{ p.avance }}%</small>
+                    </div>
+                    
+                    <div class="progress mt-2" style="height: 6px;">
+                        <div class="progress-bar bg-{{ p.color }}" style="width: {{ p.avance }}%"></div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <small class="text-muted" style="font-size: 0.75rem;">Presupuesto</small>
+                        <small class="fw-bold" style="font-size: 0.8rem;">{{ p.presupuesto }}</small>
+                    </div>
+                    <div class="mt-1 text-end">
+                        <small class="text-muted fst-italic" style="font-size: 0.7rem;">Líder: {{ p.responsable }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header text-white fw-bold py-3" style="background-color: var(--primary);">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2">add_circle_outline</span>
+                        Crear Nueva Carrera
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="/admin/crear_carrera" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted">Nombre de la Carrera</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej: Ingeniería en Datos" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-muted">Duración</label>
+                            <input type="text" name="duracion" class="form-control" placeholder="Ej: 8 Semestres">
+                        </div>
+                        <div class="mb-4"> <label class="form-label fw-bold small text-muted">Jornada</label>
+                            <select name="jornada" class="form-select">
+                                <option>Diurno</option>
+                                <option>Vespertino</option>
+                                <option>Online</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-success w-100 fw-bold shadow-sm">
+                            <i class="material-icons align-middle fs-6 me-1">save</i> Guardar Carrera
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-transparent py-3 border-bottom">
+                    <h5 class="mb-0 fw-bold text-muted">Oferta Académica Vigente</h5>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light"> <tr>
+                                <th class="ps-4">ID</th>
+                                <th>Carrera</th>
+                                <th>Jornada</th>
+                                <th class="text-end pe-4">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in carreras %}
+                            <tr>
+                                <td class="ps-4 fw-bold text-muted">#{{ c.id }}</td>
+                                <td>
+                                    <span class="fw-bold d-block">{{ c.nombre }}</span>
+                                    <small class="text-muted">{{ c.duracion }}</small>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info bg-opacity-10 text-info border border-info rounded-pill">
+                                        {{ c.jornada }}
+                                    </span>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <a href="#" class="btn btn-outline-danger btn-sm rounded-circle" title="Eliminar" onclick="return confirm('Función deshabilitada en demo')">
+                                        <i class="material-icons fs-6">delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
