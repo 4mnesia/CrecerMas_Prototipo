@@ -1,19 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
-from flask_cors import CORS # Si no tienes esto instalado, pip install flask-cors
+from flask_cors import CORS 
 import db
 import logic
 
 app = Flask(__name__)
-app.secret_key = 'super_secreto_crecermas_v2' # Clave para sesiones
-CORS(app) # Permite peticiones cruzadas si fuera necesario
+app.secret_key = 'super_secreto_crecermas_v2'
+CORS(app)
 
 # ------------------------------------------------------
-# 1. RUTAS DE VISTAS (Renderizan HTML)
+# 1. RUTAS PÚBLICAS Y ACCESO
 # ------------------------------------------------------
 
 @app.route('/')
 def home():
-    # Pasamos las carreras para mostrarlas en la sección "Oferta Académica"
+    # Pasamos carreras para la sección de oferta académica en el landing
     return render_template('index.html', carreras=db.carreras)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -22,7 +22,7 @@ def login():
         user = request.form['username']
         pwd = request.form['password']
         
-        # Autenticación Simulada (MOCK)
+        # Autenticación Simulada
         if user == 'admin' and pwd == 'admin123':
             session['user'] = 'admin'
             session['nombre'] = 'Sebastián Bravo' # Director TI
@@ -43,91 +43,149 @@ def logout():
     session.clear()
     return redirect(url_for('home'))
 
+# ------------------------------------------------------
+# 2. PANELES PRINCIPALES (DASHBOARDS)
+# ------------------------------------------------------
+
 @app.route('/admin/dashboard')
 def admin_dashboard():
-    # Protección de ruta
     if 'user' not in session or session['user'] != 'admin':
-        flash('Acceso no autorizado. Inicia sesión como administrador.', 'warning')
+        flash('Acceso no autorizado.', 'warning')
         return redirect(url_for('login'))
         
-    # Inyectamos TODOS los datos necesarios para dashboard_admin.html
+    # Inyectamos proyectos para que los botones "Gestionar" aparezcan
     return render_template('dashboard_admin.html', 
                            carreras=db.carreras, 
                            kpis=db.kpis_admin, 
-                           proyectos=db.proyectos_gestion) # ¡Aquí enviamos los proyectos!
+                           proyectos=db.proyectos_gestion)
 
 @app.route('/campus')
 def student_dashboard():
-    # Protección de ruta
     if 'user' not in session:
         return redirect(url_for('login'))
     
-    # Inyectamos los cursos para campus_virtual.html
     return render_template('campus_virtual.html', cursos=db.campus_cursos)
 
 # ------------------------------------------------------
-# 2. RUTAS DE FUNCIONALIDAD (Crear, Borrar - Simuladas)
+# 3. MÓDULOS DE GESTIÓN (CRM, ALERTA, SIGAA)
+# ------------------------------------------------------
+
+# --- A. CRM ADMISIÓN ---
+@app.route('/crm/dashboard')
+def crm_dashboard():
+    if 'user' not in session or session['user'] != 'admin':
+        return redirect(url_for('login'))
+    
+    # Filtros para el Kanban
+    nuevos = [l for l in db.crm_leads if l['estado'] == 'NUEVO']
+    contactados = [l for l in db.crm_leads if l['estado'] in ['CONTACTADO', 'SEGUIMIENTO']]
+    matriculados = [l for l in db.crm_leads if l['estado'] == 'MATRICULADO']
+    
+    return render_template('crm_dashboard.html', 
+                           leads_nuevos=nuevos, 
+                           leads_contactados=contactados, 
+                           leads_matriculados=matriculados)
+
+@app.route('/crm/crear', methods=['POST'])
+def crm_crear():
+    if session.get('user') == 'admin':
+        nuevo_lead = {
+            "id": len(db.crm_leads) + 101,
+            "nombre": request.form['nombre'],
+            "estado": "NUEVO",
+            "canal": request.form['canal']
+        }
+        db.crm_leads.append(nuevo_lead)
+        flash('Postulante registrado.', 'success')
+    return redirect(url_for('crm_dashboard'))
+
+@app.route('/crm/mover/<int:id>/<nuevo_estado>', methods=['POST'])
+def crm_mover(id, nuevo_estado):
+    if session.get('user') == 'admin':
+        for lead in db.crm_leads:
+            if lead['id'] == id:
+                lead['estado'] = nuevo_estado
+                break
+    return redirect(url_for('crm_dashboard'))
+
+# --- B. ALERTA TEMPRANA (CON IA/LOGIC.PY) ---
+@app.route('/alerta/dashboard')
+def alerta_dashboard():
+    if 'user' not in session or session['user'] != 'admin':
+        return redirect(url_for('login'))
+    
+    # 1. Traemos datos de alumnos (simulando conexión a BD)
+    alumnos = db.sigaa_alumnos
+    reporte = []
+    contador_riesgo_alto = 0
+
+    # 2. PROCESAMOS CON LOGIC.PY (IA)
+    for a in alumnos:
+        # Llamamos a la función del archivo logic.py
+        riesgo_ia, score_ia = logic.simular_ia_riesgo(a['asistencia'], a['promedio'])
+        
+        if riesgo_ia == 'ALTO':
+            contador_riesgo_alto += 1
+            
+        reporte.append({
+            "nombre": a['nombre'],
+            "asistencia": a['asistencia'],
+            "promedio": a['promedio'],
+            "riesgo": riesgo_ia, # Dato calculado
+            "score": score_ia    # Dato calculado
+        })
+    
+    # Ordenamos: los más riesgosos primero
+    reporte.sort(key=lambda x: x['score'], reverse=True)
+
+    return render_template('alerta_dashboard.html', 
+                           reporte=reporte, 
+                           alumnos_riesgo_alto=contador_riesgo_alto)
+
+# --- C. SIGAA (GESTIÓN ACADÉMICA) ---
+@app.route('/sigaa/dashboard')
+def sigaa_dashboard():
+    if 'user' not in session or session['user'] != 'admin':
+        return redirect(url_for('login'))
+        
+    return render_template('sigaa_dashboard.html', alumnos=db.sigaa_alumnos)
+
+# ------------------------------------------------------
+# 4. FUNCIONES EXTRA (CRUD CARRERAS)
 # ------------------------------------------------------
 
 @app.route('/admin/crear_carrera', methods=['POST'])
 def crear_carrera():
     if session.get('user') == 'admin':
-        # Lógica simple para agregar a la lista en memoria
-        nueva_carrera = {
+        nueva = {
             "id": len(db.carreras) + 1,
             "nombre": request.form['nombre'],
             "duracion": request.form['duracion'],
             "jornada": request.form['jornada'],
             "alumnos": 0
         }
-        db.carreras.append(nueva_carrera)
-        flash('Carrera creada exitosamente.', 'success')
+        db.carreras.append(nueva)
+        flash('Carrera creada.', 'success')
     return redirect(url_for('admin_dashboard'))
 
 @app.route('/admin/borrar/<int:id>')
 def borrar_carrera(id):
     if session.get('user') == 'admin':
-        # Filtramos la lista para quitar el ID seleccionado
         db.carreras = [c for c in db.carreras if c['id'] != id]
         flash('Carrera eliminada.', 'warning')
     return redirect(url_for('admin_dashboard'))
 
 # ------------------------------------------------------
-# 3. API ENDPOINTS (Para el JavaScript asíncrono)
+# 5. API ENDPOINTS (Para JS asíncrono si se necesita)
 # ------------------------------------------------------
-
 @app.route('/api/crm/leads', methods=['GET'])
-def get_leads():
-    return jsonify(db.crm_leads)
-
-@app.route('/api/crm/nuevo', methods=['POST'])
-def nuevo_lead():
-    data = request.json
-    nuevo = {
-        "id": len(db.crm_leads) + 100,
-        "nombre": data['nombre'],
-        "estado": "NUEVO",
-        "canal": data['canal']
-    }
-    db.crm_leads.append(nuevo)
-    return jsonify({"mensaje": "Guardado", "lead": nuevo}), 201
+def get_leads(): return jsonify(db.crm_leads)
 
 @app.route('/api/sigaa/alumnos', methods=['GET'])
-def get_sigaa():
-    return jsonify(db.sigaa_alumnos)
+def get_sigaa(): return jsonify(db.sigaa_alumnos)
 
 @app.route('/api/campus/cursos', methods=['GET'])
-def get_cursos():
-    return jsonify(db.campus_cursos)
+def get_cursos(): return jsonify(db.campus_cursos)
 
-@app.route('/api/alerta/dashboard', methods=['GET'])
-def get_alertas():
-    # Aquí podríamos usar logic.py si quisiéramos recalcular en tiempo real
-    # Por ahora devolvemos los datos fijos de db.py
-    return jsonify(db.alerta_riesgos)
-
-# ------------------------------------------------------
-# INICIO DE LA APP
-# ------------------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

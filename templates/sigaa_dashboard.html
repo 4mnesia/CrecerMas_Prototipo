@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-primary"><i class="material-icons align-middle fs-2">dns</i> SIGAA 2.0</h2>
+            <p class="text-muted">Gestión Académica y Curricular</p>
+        </div>
+        <button class="btn btn-primary btn-custom" onclick="Swal.fire('Función Demo', 'Aquí se abriría el formulario de matrícula', 'info')">
+            <i class="material-icons align-middle me-1">person_add</i> Matricular Alumno
+        </button>
+    </div>
+
+    <div class="row g-4">
+        {% for alumno in alumnos %}
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="bg-light rounded-circle p-3 me-3 text-primary fw-bold fs-4">
+                        {{ alumno.nombre[0] }}
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="fw-bold mb-1">{{ alumno.nombre }}</h5>
+                        <p class="text-muted small mb-0">{{ alumno.carrera }} | Semestre {{ alumno.semestre }}</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="d-block fs-5 fw-bold text-primary">{{ alumno.promedio }}</span>
+                        <small class="text-muted">Promedio</small>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0 text-end">
+                    <a href="#" class="text-decoration-none small fw-bold me-3">Historial</a>
+                    <a href="#" class="text-decoration-none small fw-bold text-danger">Finanzas</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

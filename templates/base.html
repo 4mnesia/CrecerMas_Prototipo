@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,93 +8,101 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top"
-        style="background-color: var(--navbar-bg); transition: background-color 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1);">
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: var(--navbar-bg); transition: background-color 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1);">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center fw-bold ls-1" href="/">
                 <span class="material-icons me-2 fs-4">school</span>
                 <span class="d-none d-md-block">IP CRECER MÁS</span>
                 <span class="d-md-none">IPCM</span>
             </a>
-
+            
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            
             <div class="collapse navbar-collapse" id="navbarNav">
+                
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link px-3" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#institucion">Institución</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#carreras">Carreras</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#admision">Admisión</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="#contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="/#institucion">Institución</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="/#carreras">Carreras</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="/#admision">Admisión</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="/#contacto">Contacto</a></li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto align-items-center gap-2">
-
-                    <li class="nav-item">
-                        <button id="theme-toggle" class="btn btn-link text-white p-0" title="Cambiar Tema">
+                    
+                    <li class="nav-item border-end pe-3 border-white border-opacity-25">
+                        <button id="theme-toggle" class="btn btn-link text-white p-0 d-flex align-items-center" title="Cambiar Tema">
                             <span class="material-icons" id="theme-icon">dark_mode</span>
                         </button>
                     </li>
 
-                    <div class="vr text-white mx-2 d-none d-lg-block"></div>
-
                     {% if session.get('user') %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center user-badge rounded-pill px-3 py-1"
-                            href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="material-icons fs-6 me-2">person</i>
-                            <span class="small fw-bold">{{ session['nombre'] }}</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
-                            {% if session.get('user') == 'admin' %}
-                            <li><a class="dropdown-item py-2" href="{{ url_for('admin_dashboard') }}"><i
-                                        class="material-icons align-middle fs-6 me-2 text-primary">dashboard</i>
-                                    Gestión</a></li>
-                            {% else %}
-                            <li><a class="dropdown-item py-2" href="{{ url_for('student_dashboard') }}"><i
-                                        class="material-icons align-middle fs-6 me-2 text-primary">laptop_mac</i> Mi
-                                    Campus</a></li>
-                            {% endif %}
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item py-2 text-danger" href="/logout">Cerrar Sesión</a></li>
-                        </ul>
-                    </li>
+                        <li class="nav-item dropdown ms-2">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center user-badge rounded-pill px-3 py-1" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="material-icons fs-6 me-2">person</i>
+                                <span class="small fw-bold">{{ session['nombre'] }}</span>
+                            </a>
+                            
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
+                                {% if session.get('user') == 'admin' %}
+                                    <li>
+                                        <a class="dropdown-item py-2" href="{{ url_for('admin_dashboard') }}">
+                                            <i class="material-icons align-middle fs-6 me-2 text-primary">dashboard</i> Panel General
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2" href="{{ url_for('crm_dashboard') }}">
+                                            <i class="material-icons align-middle fs-6 me-2 text-warning">filter_alt</i> CRM Admisión
+                                        </a>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <a class="dropdown-item py-2" href="{{ url_for('student_dashboard') }}">
+                                            <i class="material-icons align-middle fs-6 me-2 text-primary">laptop_mac</i> Mi Campus Virtual+
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item py-2 text-danger d-flex align-items-center" href="/logout">
+                                        <i class="material-icons fs-6 me-2">logout</i> Cerrar Sesión
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light btn-sm rounded-pill px-3 fw-bold d-flex align-items-center"
-                            href="/login">
-                            <i class="material-icons fs-6 me-1">lock</i> Intranet
-                        </a>
-                    </li>
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-outline-light btn-sm rounded-pill px-3 fw-bold d-flex align-items-center hover-scale" href="/login">
+                                <i class="material-icons fs-6 me-1">lock</i> Acceso Intranet
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-3 position-absolute start-50 translate-middle-x" style="z-index: 1050; top: 80px;">
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible fade show shadow-sm border-0" role="alert">
-            <div class="d-flex align-items-center">
-                <span class="material-icons me-2 fs-5">
-                    {% if category == 'success' %}check_circle
-                    {% elif category == 'danger' %}error
-                    {% else %}info{% endif %}
-                </span>
-                {{ message }}
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        {% endfor %}
-        {% endif %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show shadow-lg border-0 d-flex align-items-center" role="alert">
+                        <span class="material-icons me-2">
+                            {% if category == 'success' %}check_circle
+                            {% elif category == 'danger' %}error
+                            {% elif category == 'warning' %}warning
+                            {% else %}info{% endif %}
+                        </span>
+                        <div>{{ message }}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
     </div>
 
@@ -103,13 +110,12 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="text-center py-4 mt-5"
-        style="border-top: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-muted);">
+    <footer class="text-center py-4 mt-auto" style="border-top: 1px solid var(--border-color); background-color: var(--bg-card); color: var(--text-muted);">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <small class="d-block mb-2">&copy; 2025 Instituto Crecer Más</small>
-                    <small style="font-size: 0.8rem; opacity: 0.7;">Plataforma de Gestión Integral V2.0</small>
+                    <p class="mb-1 fw-bold">&copy; 2025 Instituto Profesional Crecer Más</p>
+                    <small style="opacity: 0.7;">Plataforma Integral de Gestión Educativa V2.0</small>
                 </div>
             </div>
         </div>
@@ -118,8 +124,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
+    
     {% block scripts %}{% endblock %}
 </body>
-
 </html>
